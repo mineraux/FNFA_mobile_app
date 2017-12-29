@@ -17,6 +17,7 @@
 		004253D71FE44F0A00F28931 /* le_festival.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 004253D61FE44F0A00F28931 /* le_festival.storyboard */; };
 		004253D91FE44F5100F28931 /* informations.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 004253D81FE44F5100F28931 /* informations.storyboard */; };
 		004253DB1FE44FDC00F28931 /* ma_selection.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 004253DA1FE44FDC00F28931 /* ma_selection.storyboard */; };
+		005F15AE1FF6B7F5008AC7DC /* singleEvent.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 005F15AD1FF6B7F5008AC7DC /* singleEvent.storyboard */; };
 		0072DB131FF01C3900C4F680 /* SingleEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0072DB121FF01C3900C4F680 /* SingleEventViewController.swift */; };
 		0072DB151FF01DB800C4F680 /* EventsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0072DB141FF01DB800C4F680 /* EventsList.swift */; };
 		0072DB171FF0205A00C4F680 /* events.json in Resources */ = {isa = PBXBuildFile; fileRef = 0072DB161FF0205A00C4F680 /* events.json */; };
@@ -48,6 +49,7 @@
 		004253D61FE44F0A00F28931 /* le_festival.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = le_festival.storyboard; sourceTree = "<group>"; };
 		004253D81FE44F5100F28931 /* informations.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = informations.storyboard; sourceTree = "<group>"; };
 		004253DA1FE44FDC00F28931 /* ma_selection.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ma_selection.storyboard; sourceTree = "<group>"; };
+		005F15AD1FF6B7F5008AC7DC /* singleEvent.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = singleEvent.storyboard; sourceTree = "<group>"; };
 		0072DB121FF01C3900C4F680 /* SingleEventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleEventViewController.swift; sourceTree = "<group>"; };
 		0072DB141FF01DB800C4F680 /* EventsList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsList.swift; sourceTree = "<group>"; };
 		0072DB161FF0205A00C4F680 /* events.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = events.json; path = "fnfa-dataset/events.json"; sourceTree = SOURCE_ROOT; };
@@ -102,6 +104,7 @@
 				004253D81FE44F5100F28931 /* informations.storyboard */,
 				0012649B1FEE90F7003B1981 /* voir_tout.storyboard */,
 				004253DA1FE44FDC00F28931 /* ma_selection.storyboard */,
+				005F15AD1FF6B7F5008AC7DC /* singleEvent.storyboard */,
 				004253BD1FE44E1B00F28931 /* Assets.xcassets */,
 				004253BF1FE44E1B00F28931 /* LaunchScreen.storyboard */,
 				004253C21FE44E1B00F28931 /* Info.plist */,
@@ -210,6 +213,7 @@
 				004253BC1FE44E1B00F28931 /* Main.storyboard in Resources */,
 				0012649C1FEE90F7003B1981 /* voir_tout.storyboard in Resources */,
 				004253D71FE44F0A00F28931 /* le_festival.storyboard in Resources */,
+				005F15AE1FF6B7F5008AC7DC /* singleEvent.storyboard in Resources */,
 				004253DB1FE44FDC00F28931 /* ma_selection.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

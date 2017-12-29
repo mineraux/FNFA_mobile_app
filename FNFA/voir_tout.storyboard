@@ -6,7 +6,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
-        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -38,44 +37,20 @@
                     </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="mbU-wz-vvA" id="ZR7-5A-upO"/>
-                        <segue destination="VaM-ZJ-qn3" kind="show" identifier="showDetails" id="jOR-V0-8iG"/>
+                        <segue destination="Br0-XR-xgz" kind="show" identifier="showDetails" id="6zl-3o-ZX7"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jPk-f2-SUT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="247.19999999999999" y="106.59670164917542"/>
         </scene>
-        <!--Single Event View Controller-->
-        <scene sceneID="SOH-vs-JdX">
+        <!--singleEvent-->
+        <scene sceneID="RZw-MB-az0">
             <objects>
-                <viewController id="VaM-ZJ-qn3" customClass="SingleEventViewController" customModule="FNFA" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="WBg-fP-Akt">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QmF-n8-uGP">
-                                <rect key="frame" x="16" y="80" width="150" height="150"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="titleEvent" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="csn-0B-jNY">
-                                <rect key="frame" x="16" y="247" width="343" height="67"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <viewLayoutGuide key="safeArea" id="wt8-6N-Inu"/>
-                    </view>
-                    <connections>
-                        <outlet property="imageView" destination="QmF-n8-uGP" id="NLv-Lh-14u"/>
-                        <outlet property="titleSingleEventLabel" destination="csn-0B-jNY" id="zlP-ZK-zlt"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="mGI-9M-oKR" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewControllerPlaceholder storyboardName="singleEvent" id="Br0-XR-xgz" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="syL-jP-1jc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1110" y="107"/>
+            <point key="canvasLocation" x="943" y="106"/>
         </scene>
         <!--Voir tout-->
         <scene sceneID="Lyz-zR-MUB">

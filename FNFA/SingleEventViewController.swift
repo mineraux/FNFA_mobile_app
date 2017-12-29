@@ -9,15 +9,17 @@
 import UIKit
 
 class SingleEventViewController: UIViewController {
+    
 
+    
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var titleSingleEventLabel: UILabel!
+    
     
     var event:EventsList?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
         titleSingleEventLabel.text = event?.name
     }
 

@@ -16,14 +16,11 @@ class allEventsController: UITableViewController {
         super.viewDidLoad()
         
         downloadJson {
-            
             self.tableView.reloadData()
-            
         }
         
         tableView.delegate = self
         tableView.dataSource = self
-        
     }
 
     override func didReceiveMemoryWarning() {
@@ -33,9 +30,7 @@ class allEventsController: UITableViewController {
     // MARK: - Table view data source
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print("test")
         return events.count
-
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -45,6 +40,7 @@ class allEventsController: UITableViewController {
     }
     
     // MARK: - Filter
+    
     @IBAction func buttonAction(_ sender: Any) {
         events = events.filter { $0.category == "Séance spéciale" }
         self.tableView.reloadData()
@@ -55,10 +51,20 @@ class allEventsController: UITableViewController {
         self.tableView.reloadData()
     }
     
+    // MARK: - Pass data when tap on cell
+    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         performSegue(withIdentifier: "showDetails", sender: self)
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let destination = segue.destination as? SingleEventViewController {
+            destination.event = events[(tableView.indexPathForSelectedRow?.row)!]
+        }
+    }
+    
+    // MARK: - Load Json
+
     func downloadJson(completed: @escaping () -> ()) {
         let path = Bundle.main.path(forResource: "events", ofType: "json")
         
@@ -75,6 +81,7 @@ class allEventsController: UITableViewController {
             print("error json")
         }
     }
+    
     /*
     // MARK: - Navigation
 
