@@ -14,12 +14,12 @@ class allEventsController: UIViewController, UITableViewDelegate, UITableViewDat
     @IBOutlet weak var filtersTrailingConstraint: NSLayoutConstraint!
     
     @IBOutlet weak var filterButtonSeanceSpe: UIButton!
-    
-    
-    
+    @IBOutlet weak var filterButtonNouvellesEcritures: UIButton!
     
     var events = [EventsList]()
+    var filteredEvents = [EventsList]()
     var isFiltersHidden = true
+    var activeFilters = [String]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,6 +38,11 @@ class allEventsController: UIViewController, UITableViewDelegate, UITableViewDat
         filterButtonSeanceSpe.layer.borderWidth = 2
         filterButtonSeanceSpe.layer.borderColor = UIColor.black.cgColor
         
+        filterButtonNouvellesEcritures.backgroundColor = .clear
+        filterButtonNouvellesEcritures.layer.cornerRadius = 10
+        filterButtonNouvellesEcritures.layer.borderWidth = 2
+        filterButtonNouvellesEcritures.layer.borderColor = UIColor.black.cgColor
+        
     }
     
     override func didReceiveMemoryWarning() {
@@ -54,6 +59,7 @@ class allEventsController: UIViewController, UITableViewDelegate, UITableViewDat
         do {
             let data = try Data(contentsOf: url)
             self.events = try JSONDecoder().decode([EventsList].self, from: data)
+            self.filteredEvents = try JSONDecoder().decode([EventsList].self, from: data)
             
             DispatchQueue.main.async {
                 completed()
@@ -67,17 +73,19 @@ class allEventsController: UIViewController, UITableViewDelegate, UITableViewDat
     // MARK: - Table view data source
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return events.count
+        return filteredEvents.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell(style: .default, reuseIdentifier: "Cell")
-        cell.textLabel?.text = events[indexPath.row].name
+        cell.textLabel?.text = filteredEvents[indexPath.row].name
+
         return cell
     }
     
     // MARK: - Filter
     
+        // Menu show/hide on click
     @IBAction func filtersButton(_ sender: Any) {
         if isFiltersHidden {
             filtersTrailingConstraint.constant = 0
@@ -95,16 +103,48 @@ class allEventsController: UIViewController, UITableViewDelegate, UITableViewDat
         isFiltersHidden = !isFiltersHidden
     }
     
+    
+    
     @IBAction func filterButtonSeanceSpe(_ sender: Any) {
-        events = events.filter { $0.category == "Séance spéciale" }
+        if let index = activeFilters.index(of: "Séance spéciale") {
+            activeFilters.remove(at: index)
+            filterButtonSeanceSpe.backgroundColor = .clear
+        } else {
+            activeFilters.append("Séance spéciale")
+            filterButtonSeanceSpe.backgroundColor = UIColor.yellow
+        }
+        
+        filterEvent()
+    }
+    
+    @IBAction func filterButtonNouvellesEcritures(_ sender: Any) {
+        if let index = activeFilters.index(of: "Salon des nouvelles écritures") {
+            activeFilters.remove(at: index)
+            filterButtonNouvellesEcritures.backgroundColor = .clear
+        } else {
+            activeFilters.append("Salon des nouvelles écritures")
+            filterButtonNouvellesEcritures.backgroundColor = UIColor.yellow
+        }
+
+        filterEvent()
+    }
+    
+    func filterEvent(){
+        for filter in activeFilters {
+            filteredEvents = events.filter { $0.category == filter }
+        }
+        
+        if activeFilters.isEmpty {
+            filteredEvents = events
+        }
+        
         self.tableView.reloadData()
     }
     
-    //    @IBAction func buttonAction(_ sender: Any) {
-    //        events = events.filter { $0.category == "Séance spéciale" }
-    //        self.tableView.reloadData()
-    //    }
-    
+    @IBAction func reinitFilters(_ sender: Any) {
+        filteredEvents = events
+        self.tableView.reloadData()
+    }
     
     // MARK: - Pass data when tap on cell
     

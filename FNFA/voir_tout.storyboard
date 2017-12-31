@@ -54,6 +54,33 @@
                                             <action selector="filterButtonSeanceSpe:" destination="Hwj-DZ-4GJ" eventType="touchUpInside" id="eHy-jJ-liK"/>
                                         </connections>
                                     </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Filtrer ma recherche" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="viR-K5-HX4">
+                                        <rect key="frame" x="0.0" y="101" width="300" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="A2a-NX-lkd">
+                                        <rect key="frame" x="22" y="207" width="201" height="50"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="Salon des nouvelles écritures">
+                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="filterButtonNouvellesEcritures:" destination="Hwj-DZ-4GJ" eventType="touchUpInside" id="xzV-bK-kzg"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Oug-1x-sZ8">
+                                        <rect key="frame" x="0.0" y="491" width="300" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="Réinitialiser les filtres">
+                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="reinitFilters:" destination="Hwj-DZ-4GJ" eventType="touchUpInside" id="zNV-u8-sKk"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.59178900718688965" green="0.68337142467498779" blue="0.99859243631362915" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
@@ -77,6 +104,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="filterButtonNouvellesEcritures" destination="A2a-NX-lkd" id="MCc-Ap-MNS"/>
                         <outlet property="filterButtonSeanceSpe" destination="RGl-eQ-Ilx" id="gMG-r1-SK0"/>
                         <outlet property="filtersTrailingConstraint" destination="XFV-mS-rJW" id="Q3a-FA-ked"/>
                         <outlet property="tableView" destination="2eU-vz-dyq" id="XNt-9E-kJ3"/>
