@@ -11,8 +11,15 @@ import UIKit
 class allEventsController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var filtersTrailingConstraint: NSLayoutConstraint!
+    
+    @IBOutlet weak var filterButtonSeanceSpe: UIButton!
+    
+    
+    
     
     var events = [EventsList]()
+    var isFiltersHidden = true
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,6 +30,14 @@ class allEventsController: UIViewController, UITableViewDelegate, UITableViewDat
         
         tableView.delegate = self
         tableView.dataSource = self
+        
+        filtersTrailingConstraint.constant = 300
+        
+        filterButtonSeanceSpe.backgroundColor = .clear
+        filterButtonSeanceSpe.layer.cornerRadius = 10
+        filterButtonSeanceSpe.layer.borderWidth = 2
+        filterButtonSeanceSpe.layer.borderColor = UIColor.black.cgColor
+        
     }
     
     override func didReceiveMemoryWarning() {
@@ -63,15 +78,33 @@ class allEventsController: UIViewController, UITableViewDelegate, UITableViewDat
     
     // MARK: - Filter
     
-    @IBAction func buttonAction(_ sender: Any) {
+    @IBAction func filtersButton(_ sender: Any) {
+        if isFiltersHidden {
+            filtersTrailingConstraint.constant = 0
+            
+            UIView.animate(withDuration: 0.3, animations: {
+                self.view.layoutIfNeeded()
+            })
+        } else {
+            filtersTrailingConstraint.constant = 300
+            
+            UIView.animate(withDuration: 0.3, animations: {
+                self.view.layoutIfNeeded()
+            })
+        }
+        isFiltersHidden = !isFiltersHidden
+    }
+    
+    @IBAction func filterButtonSeanceSpe(_ sender: Any) {
         events = events.filter { $0.category == "Séance spéciale" }
         self.tableView.reloadData()
     }
     
-    @IBAction func filter2(_ sender: Any) {
-        events = events.filter { $0.category == "Salon des nouvelles écritures" }
-        self.tableView.reloadData()
-    }
+    //    @IBAction func buttonAction(_ sender: Any) {
+    //        events = events.filter { $0.category == "Séance spéciale" }
+    //        self.tableView.reloadData()
+    //    }
+    
     
     // MARK: - Pass data when tap on cell
     
@@ -84,9 +117,6 @@ class allEventsController: UIViewController, UITableViewDelegate, UITableViewDat
             destination.event = events[(tableView.indexPathForSelectedRow?.row)!]
         }
     }
-    
-    
-    
     
     /*
      // MARK: - Navigation

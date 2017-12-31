@@ -26,11 +26,12 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="2eU-vz-dyq">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="2eU-vz-dyq">
                                 <rect key="frame" x="0.0" y="64" width="375" height="554"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="iiM-6U-uZA">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" id="iiM-6U-uZA">
                                         <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="iiM-6U-uZA" id="m9i-Ew-Lur">
@@ -40,18 +41,44 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gSs-PY-lM5">
+                                <rect key="frame" x="75" y="0.0" width="300" height="667"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RGl-eQ-Ilx">
+                                        <rect key="frame" x="22" y="149" width="162" height="50"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="Séance spéciale">
+                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="filterButtonSeanceSpe:" destination="Hwj-DZ-4GJ" eventType="touchUpInside" id="eHy-jJ-liK"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="0.59178900718688965" green="0.68337142467498779" blue="0.99859243631362915" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="300" id="psn-3W-m3b"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="2eU-vz-dyq" firstAttribute="leading" secondItem="LDB-b6-YL9" secondAttribute="leading" id="LtL-mQ-ny0"/>
-                            <constraint firstItem="2eU-vz-dyq" firstAttribute="trailing" secondItem="LDB-b6-YL9" secondAttribute="trailing" id="M6g-L6-5hK"/>
-                            <constraint firstItem="2eU-vz-dyq" firstAttribute="top" secondItem="LDB-b6-YL9" secondAttribute="top" id="WVh-Ji-kHz"/>
-                            <constraint firstItem="2eU-vz-dyq" firstAttribute="bottom" secondItem="LDB-b6-YL9" secondAttribute="bottom" id="qQ5-Ij-Slz"/>
+                            <constraint firstAttribute="bottom" secondItem="gSs-PY-lM5" secondAttribute="bottom" id="P3Q-Z7-dBC"/>
+                            <constraint firstItem="gSs-PY-lM5" firstAttribute="trailing" secondItem="LDB-b6-YL9" secondAttribute="trailing" id="XFV-mS-rJW"/>
+                            <constraint firstItem="gSs-PY-lM5" firstAttribute="top" secondItem="pwi-qe-hT8" secondAttribute="top" id="q12-78-0zI"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="LDB-b6-YL9"/>
                     </view>
-                    <navigationItem key="navigationItem" id="YSt-QN-GJ6"/>
+                    <navigationItem key="navigationItem" id="YSt-QN-GJ6">
+                        <barButtonItem key="rightBarButtonItem" title="Filtres" id="AwP-uR-GaD">
+                            <connections>
+                                <action selector="filtersButton:" destination="Hwj-DZ-4GJ" id="y20-0N-eDW"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
+                        <outlet property="filterButtonSeanceSpe" destination="RGl-eQ-Ilx" id="gMG-r1-SK0"/>
+                        <outlet property="filtersTrailingConstraint" destination="XFV-mS-rJW" id="Q3a-FA-ked"/>
                         <outlet property="tableView" destination="2eU-vz-dyq" id="XNt-9E-kJ3"/>
                         <segue destination="Br0-XR-xgz" kind="show" identifier="showDetails" id="8qx-FM-IPg"/>
                     </connections>
