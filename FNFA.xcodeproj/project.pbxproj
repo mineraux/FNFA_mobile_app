@@ -19,9 +19,14 @@
 		004253DB1FE44FDC00F28931 /* ma_selection.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 004253DA1FE44FDC00F28931 /* ma_selection.storyboard */; };
 		005F15AE1FF6B7F5008AC7DC /* singleEvent.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 005F15AD1FF6B7F5008AC7DC /* singleEvent.storyboard */; };
 		005F15B61FF7BAD8008AC7DC /* allEventsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 005F15B51FF7BAD8008AC7DC /* allEventsController.swift */; };
+		0061FD7C1FFA860500B7FBFA /* ArticleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0061FD7B1FFA860500B7FBFA /* ArticleTableViewCell.swift */; };
 		0072DB131FF01C3900C4F680 /* SingleEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0072DB121FF01C3900C4F680 /* SingleEventViewController.swift */; };
 		0072DB151FF01DB800C4F680 /* EventsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0072DB141FF01DB800C4F680 /* EventsList.swift */; };
 		0072DB171FF0205A00C4F680 /* events.json in Resources */ = {isa = PBXBuildFile; fileRef = 0072DB161FF0205A00C4F680 /* events.json */; };
+		00E8075B1FFBA8EA00A56AD8 /* FNFA.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 00E807591FFBA8EA00A56AD8 /* FNFA.xcdatamodeld */; };
+		00E8075D1FFBA9BF00A56AD8 /* CoreDataHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00E8075C1FFBA9BF00A56AD8 /* CoreDataHandler.swift */; };
+		00E807611FFBB67900A56AD8 /* FavoriteEventsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00E807601FFBB67900A56AD8 /* FavoriteEventsViewController.swift */; };
+		00E807631FFBEDC200A56AD8 /* FavoriteEventsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00E807621FFBEDC200A56AD8 /* FavoriteEventsTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,9 +56,14 @@
 		004253DA1FE44FDC00F28931 /* ma_selection.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ma_selection.storyboard; sourceTree = "<group>"; };
 		005F15AD1FF6B7F5008AC7DC /* singleEvent.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = singleEvent.storyboard; sourceTree = "<group>"; };
 		005F15B51FF7BAD8008AC7DC /* allEventsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = allEventsController.swift; sourceTree = "<group>"; };
+		0061FD7B1FFA860500B7FBFA /* ArticleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleTableViewCell.swift; sourceTree = "<group>"; };
 		0072DB121FF01C3900C4F680 /* SingleEventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleEventViewController.swift; sourceTree = "<group>"; };
 		0072DB141FF01DB800C4F680 /* EventsList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsList.swift; sourceTree = "<group>"; };
 		0072DB161FF0205A00C4F680 /* events.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = events.json; path = "fnfa-dataset/events.json"; sourceTree = SOURCE_ROOT; };
+		00E8075A1FFBA8EA00A56AD8 /* FNFA.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = FNFA.xcdatamodel; sourceTree = "<group>"; };
+		00E8075C1FFBA9BF00A56AD8 /* CoreDataHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataHandler.swift; sourceTree = "<group>"; };
+		00E807601FFBB67900A56AD8 /* FavoriteEventsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteEventsViewController.swift; sourceTree = "<group>"; };
+		00E807621FFBEDC200A56AD8 /* FavoriteEventsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteEventsTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,9 +106,13 @@
 			isa = PBXGroup;
 			children = (
 				004253B61FE44E1B00F28931 /* AppDelegate.swift */,
+				00E8075C1FFBA9BF00A56AD8 /* CoreDataHandler.swift */,
 				0072DB121FF01C3900C4F680 /* SingleEventViewController.swift */,
 				004253B81FE44E1B00F28931 /* ViewController.swift */,
+				00E807601FFBB67900A56AD8 /* FavoriteEventsViewController.swift */,
 				005F15B51FF7BAD8008AC7DC /* allEventsController.swift */,
+				0061FD7B1FFA860500B7FBFA /* ArticleTableViewCell.swift */,
+				00E807621FFBEDC200A56AD8 /* FavoriteEventsTableViewCell.swift */,
 				004253BA1FE44E1B00F28931 /* Main.storyboard */,
 				004253D61FE44F0A00F28931 /* le_festival.storyboard */,
 				004253D81FE44F5100F28931 /* informations.storyboard */,
@@ -110,6 +124,7 @@
 				004253C21FE44E1B00F28931 /* Info.plist */,
 				0072DB141FF01DB800C4F680 /* EventsList.swift */,
 				0072DB161FF0205A00C4F680 /* events.json */,
+				00E807591FFBA8EA00A56AD8 /* FNFA.xcdatamodeld */,
 			);
 			path = FNFA;
 			sourceTree = "<group>";
@@ -233,9 +248,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				0072DB151FF01DB800C4F680 /* EventsList.swift in Sources */,
+				00E8075D1FFBA9BF00A56AD8 /* CoreDataHandler.swift in Sources */,
 				005F15B61FF7BAD8008AC7DC /* allEventsController.swift in Sources */,
 				004253B91FE44E1B00F28931 /* ViewController.swift in Sources */,
+				00E807611FFBB67900A56AD8 /* FavoriteEventsViewController.swift in Sources */,
 				0072DB131FF01C3900C4F680 /* SingleEventViewController.swift in Sources */,
+				00E8075B1FFBA8EA00A56AD8 /* FNFA.xcdatamodeld in Sources */,
+				0061FD7C1FFA860500B7FBFA /* ArticleTableViewCell.swift in Sources */,
+				00E807631FFBEDC200A56AD8 /* FavoriteEventsTableViewCell.swift in Sources */,
 				004253B71FE44E1B00F28931 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -476,6 +496,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		00E807591FFBA8EA00A56AD8 /* FNFA.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				00E8075A1FFBA8EA00A56AD8 /* FNFA.xcdatamodel */,
+			);
+			currentVersion = 00E8075A1FFBA8EA00A56AD8 /* FNFA.xcdatamodel */;
+			path = FNFA.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 004253AB1FE44E1B00F28931 /* Project object */;
 }

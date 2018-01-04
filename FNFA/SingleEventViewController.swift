@@ -20,7 +20,7 @@ class SingleEventViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        titleSingleEventLabel.text = event?.name
+        //titleSingleEventLabel.text = event?.name
     }
 
     override func didReceiveMemoryWarning() {
