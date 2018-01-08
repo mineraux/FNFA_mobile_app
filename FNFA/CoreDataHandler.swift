@@ -16,13 +16,15 @@ class CoreDataHandler: NSObject {
         return appDelegate.persistentContainer.viewContext
     }
     
-    class func saveObject(eventname: String, eventcategory: String) -> Bool {
+    class func saveObject(eventname: String, eventcategory: String, eventdate: String, eventplaces: String) -> Bool {
         let context = getContext()
         let entity = NSEntityDescription.entity(forEntityName: "Event", in: context)
         let manageObject = NSManagedObject(entity: entity!, insertInto: context)
         
         manageObject.setValue(eventname, forKey: "eventname")
         manageObject.setValue(eventcategory, forKey: "eventcategory")
+        manageObject.setValue(eventdate, forKey: "eventdate")
+        manageObject.setValue(eventplaces, forKey: "eventplaces")
         
         do {
             try context.save()
@@ -68,3 +70,4 @@ class CoreDataHandler: NSObject {
     }
     
 }
+

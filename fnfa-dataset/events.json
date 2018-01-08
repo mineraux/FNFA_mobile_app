@@ -1,175 +1,101 @@
-{
-  "events": [{
-             "id": 1,
-             "name": "Séance scolaire",
-             "excerpt": "Petite enfance 3 ans",
-             "placeIds": [2],
-             "category": "Séance spéciale",
-             "startingDate": "2018-04-04T09:30:00Z",
-             "endingDate": "2018-04-04T10:30:00Z"
-             },
-             {
-             "id": 2,
-             "name": "Salon des nouvelles écritures",
-             "excerpt": "Et projections (boucle de 20min) ou démos en continu",
-             "placeIds": [5, 6],
-             "category": "Séance spéciale",
-             "startingDate": "2018-04-04T10:00:00Z",
-             "endingDate": "2018-04-04T20:30:00Z"
-             },
-             {
-             "id": 3,
-             "name": "Regards croisés sur la Fête 2018",
-             "excerpt": "",
-             "placeIds": [3],
-             "category": "Séance spéciale",
-             "startingDate": "2018-04-04T10:30:00Z",
-             "endingDate": "2018-04-04T13:30:00Z"
-             },
-             {
-             "id": 4,
-             "name": "Les courts n°5",
-             "excerpt": "",
-             "placeIds": "[1]",
-             "category": "Séance spéciale",
-             "startingDate": "2018-04-04T14:30:00Z",
-             "endingDate": "2018-04-04T16:00:00Z"
-             },
-             {
-             "id": 5,
-             "name": "Ateliers tout public",
-             "excerpt": "",
-             "placeIds": [3],
-             "category": "Séance spéciale",
-             "startingDate": "2018-04-04T14:30:00Z",
-             "endingDate": "2018-04-04T18:30:00Z"
-             },
-             {
-             "id": 6,
-             "name": "Croc Blanc",
-             "excerpt": "",
-             "placeIds": [1],
-             "category": "Salon des nouvelles écritures",
-             "startingDate": "2018-04-04T16:30:00Z",
-             "endingDate": "2018-04-04T18:00:00Z"
-             },
-             {
-             "id": 7,
-             "name": "Inauguration",
-             "excerpt": "",
-             "placeIds": [1],
-             "category": "Salon des nouvelles écritures",
-             "startingDate": {
-             "year": 2018,
-             "month": 4,
-             "day": 4,
-             "hour": 19,
-             "minute": 0
-             },
-             "endingDate": {
-             "year": 2018,
-             "month": 4,
-             "day": 4,
-             "hour": 20,
-             "minute": 0
-             }
-             },
-             {
-             "id": 8,
-             "name": "Cocktail",
-             "excerpt": "",
-             "placeIds": [4],
-             "category": "Salon des nouvelles écritures",
-             "startingDate": "2018-04-04T20:00:00Z",
-             "endingDate": "2018-04-04T21:30:00Z"
-             },
-             {
-             "id": 9,
-             "name": "Film d'ouverture",
-             "excerpt": "",
-             "placeIds": [1],
-             "category": "Volet professionnel",
-             "startingDate": "2018-04-04T21:30:00Z",
-             "endingDate": "2018-04-04T23:30:00Z"
-             }
-             ],
-  "category": [{
-               "id": 1,
-               "name": "Séance spéciale"
-               },
-               {
-               "id": 2,
-               "name": "Volet professionnel"
-               },
-               {
-               "id": 3,
-               "name": "Séance scolaire"
-               },
-               {
-               "id": 4,
-               "name": "Compétition et sélections"
-               },
-               {
-               "id": 5,
-               "name": "Long métrage et rencontres"
-               },
-               {
-               "id": 6,
-               "name": "Atelier secret Fab"
-               },
-               {
-               "id": 7,
-               "name": "Salon des nouvelles écritures"
-               },
-               {
-               "id": 8,
-               "name": "Unknown"
-               }
-               ],
-  "places": [{
-             "id": 1,
-             "name": "Ciné TNB Jouvet",
-             "seats": 400
-             },
-             {
-             "id": 2,
-             "name": "Ciné TNB Piccoli",
-             "seats": 100
-             },
-             {
-             "id": 3,
-             "name": "Espace rencontre TNB",
-             "seats": 80
-             },
-             {
-             "id": 4,
-             "name": "Bar TNB",
-             "seats": -1
-             },
-             {
-             "id": 5,
-             "name": "Hall bas TNB",
-             "seats": -1
-             },
-             {
-             "id": 6,
-             "name": "Cube - RDC TNB",
-             "seats": -1
-             },
-             {
-             "id": 7,
-             "name": "Arvor salle 2",
-             "seats": 152
-             },
-             {
-             "id": 8,
-             "name": "Hall haut TNB",
-             "seats": -1
-             },
-             {
-             "id": 9,
-             "name": "Rennes Les champs Libres",
-             "seats": -1
-             }
-             ]
-}
+[
+    {
+        "id": 1,
+        "name": "Séance scolaire",
+        "excerpt": "Petite enfance 3 ans",
+        "placeIds": [2],
+        "place" : [],
+        "categoryId": 1,
+        "category": "",
+        "startingDate": "2018-04-04T09:30:00Z",
+        "endingDate": "2018-04-04T10:30:00Z"
+    },
+    {
+        "id": 2,
+        "name": "Salon des nouvelles écritures",
+        "excerpt": "Et projections (boucle de 20min) ou démos en continu",
+        "placeIds": [5, 6],
+        "place" : [],
+        "categoryId": 1,
+        "category": "",
+        "startingDate": "2018-04-04T10:00:00Z",
+        "endingDate": "2018-04-04T20:30:00Z"
+    },
+    {
+        "id": 3,
+        "name": "Regards croisés sur la Fête 2018",
+        "excerpt": "",
+        "placeIds": [3],
+        "place" : [],
+        "categoryId": 1,
+        "category": "",
+        "startingDate": "2018-04-04T10:30:00Z",
+        "endingDate": "2018-04-04T13:30:00Z"
+    },
+    {
+        "id": 4,
+        "name": "Les courts n°5",
+        "excerpt": "",
+        "placeIds": [1],
+        "place" : [],
+        "categoryId": 1,
+        "category": "",
+        "startingDate": "2018-04-04T14:30:00Z",
+        "endingDate": "2018-04-04T16:00:00Z"
+    },
+    {
+        "id": 5,
+        "name": "Ateliers tout public",
+        "excerpt": "",
+        "placeIds": [3],
+        "place" : [],
+        "categoryId": 1,
+        "category": "",
+        "startingDate": "2018-04-04T14:30:00Z",
+        "endingDate": "2018-04-04T18:30:00Z"
+    },
+    {
+        "id": 6,
+        "name": "Croc Blanc",
+        "excerpt": "",
+        "placeIds": [1],
+        "place" : [],
+        "categoryId": 7,
+        "category": "",
+        "startingDate": "2018-04-04T16:30:00Z",
+        "endingDate": "2018-04-04T18:00:00Z"
+    },
+    {
+        "id": 7,
+        "name": "Inauguration",
+        "excerpt": "",
+        "placeIds": [1],
+        "place" : [],
+        "categoryId": 7,
+        "category": "",
+        "startingDate": "2018-04-04T19:00:00Z",
+        "endingDate": "2018-04-04T20:00:00Z"
+    },
+    {
+        "id": 8,
+        "name": "Cocktail",
+        "excerpt": "",
+        "placeIds": [4],
+        "place" : [],
+        "categoryId": 7,
+        "category": "",
+        "startingDate": "2018-04-04T20:00:00Z",
+        "endingDate": "2018-04-04T21:30:00Z"
+    },
+    {
+        "id": 9,
+        "name": "Film d'ouverture",
+        "excerpt": "",
+        "placeIds": [1],
+        "place" : [],
+        "categoryId": 2,
+        "category": "",
+        "startingDate": "2018-04-04T21:30:00Z",
+        "endingDate": "2018-04-04T23:30:00Z"
+    }
+]

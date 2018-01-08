@@ -13,7 +13,7 @@ class FavoriteEventsViewController: UIViewController, UITableViewDelegate, UITab
     @IBOutlet weak var tableView: UITableView!
     
     var event: [Event]? = nil
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -22,7 +22,7 @@ class FavoriteEventsViewController: UIViewController, UITableViewDelegate, UITab
         tableView.delegate = self
         tableView.dataSource = self
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -30,15 +30,8 @@ class FavoriteEventsViewController: UIViewController, UITableViewDelegate, UITab
     
     override func viewDidAppear(_ animated: Bool) {
         event = CoreDataHandler.fetchObject()
-//        for i in event! {
-////            print(i.eventname)
-////            print(i.eventcategory)
-//            print(i)
-//        }
-        print((event?.count)!)
         
-        
-
+        self.tableView.reloadData()
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -48,25 +41,38 @@ class FavoriteEventsViewController: UIViewController, UITableViewDelegate, UITab
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "favoriteEventCell", for: indexPath) as! FavoriteEventsTableViewCell
-        event = CoreDataHandler.fetchObject()
-
-        cell.eventName!.text = event![indexPath.row].eventname
         
-        cell.eventName!.text = "test"
+        event = CoreDataHandler.fetchObject()
+        
+        cell.eventCategory.text = event![indexPath.row].eventcategory
+        cell.eventName!.text = event![indexPath.row].eventname
+        cell.eventDate!.text = event![indexPath.row].eventdate
+        cell.eventPlaces!.text = event![indexPath.row].eventplaces
+        
+        // Gestion des caractères spéciaux
+        var imageName = cell.eventName.text!.replacingOccurrences(of: " ", with: "_", options: .literal, range: nil)
+        imageName = imageName.replacingOccurrences(of: "°", with: "", options: .literal, range: nil)
+        imageName = imageName.replacingOccurrences(of: "é|è|ê", with: "e", options: .literal, range: nil)
+        imageName = imageName.lowercased()
+        
+        cell.eventThumbnail!.image = UIImage(named:imageName)
+        
+        if cell.eventThumbnail!.image == nil {
+            cell.eventThumbnail!.image = UIImage(named:"default")
+        }
+        
         return cell
     }
     
-
-    
-
     /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     // Get the new view controller using segue.destinationViewController.
+     // Pass the selected object to the new view controller.
+     }
+     */
+    
 }
+
