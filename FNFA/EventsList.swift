@@ -13,11 +13,13 @@ struct EventList : Decodable {
     // (Ex : si un objet n'a pas de link)
     let id: Int
     let name: String
+    var excerpt: String
     var categoryId: Int
     var category: String
     var placeIds: Array<Int>
-    var place: [String]
+    var place: Array<String>
     var startingDate: String
+    var startingDateDayNumber: String
 }
 
 struct CategoryList : Decodable {

@@ -64,6 +64,8 @@ class FavoriteEventsViewController: UIViewController, UITableViewDelegate, UITab
         return cell
     }
     
+    
+    
     /*
      // MARK: - Navigation
      

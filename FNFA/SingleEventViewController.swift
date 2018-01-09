@@ -9,18 +9,32 @@
 import UIKit
 
 class SingleEventViewController: UIViewController {
-    
-    
-    
-    @IBOutlet weak var imageView: UIImageView!
-    @IBOutlet weak var titleSingleEventLabel: UILabel!
-    
+
+    @IBOutlet weak var eventThumbnail: UIImageView!
+    @IBOutlet weak var eventName: UILabel!
+    @IBOutlet weak var eventDate: UILabel!
+    @IBOutlet weak var eventPlace: UILabel!
+    @IBOutlet weak var eventExcerpt: UILabel!
     
     var event:EventList?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         //titleSingleEventLabel.text = event?.name
+        
+        eventName.text = event?.name
+        
+        let dateIso = event?.startingDate
+        let formatter = ISO8601DateFormatter()
+        formatter.formatOptions = [.withYear, .withMonth, .withDay, .withTime, .withDashSeparatorInDate, .withColonSeparatorInTime]
+        formatter.timeZone = TimeZone(identifier: "Europe/Paris")
+        if let date = formatter.date(from: dateIso!) {
+            eventDate.text = date.hourDate
+        }
+        
+        //A modifier pour ressortir tout les lieux
+        eventPlace.text = event?.place.joined(separator: ", ")
+        eventExcerpt.text = event?.excerpt
     }
     
     override func didReceiveMemoryWarning() {

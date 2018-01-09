@@ -57,13 +57,20 @@ func downloadJson(completed: @escaping () -> ()) {
         let dataEvents = try Data(contentsOf: urlEvents)
         events = try JSONDecoder().decode([EventList].self, from: dataEvents)
         
-//        var l = 0
-//
-//
-//        while l<events.count{
-//            events[l].startingDateHourFormat = events[l].startingDate
-//            l = l + 1
-//        }
+        var l = 0
+
+
+        while l<events.count{
+            
+            let formatter = ISO8601DateFormatter()
+            let dateIso = events[l].startingDate
+            if let date = formatter.date(from: dateIso) {
+                events[l].startingDateDayNumber = date.nameNumberDate.capitalized
+            }
+            
+            l = l + 1
+        }
+        
         
         var i = 0
         var j = 0

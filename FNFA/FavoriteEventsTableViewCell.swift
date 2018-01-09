@@ -17,6 +17,8 @@ class FavoriteEventsTableViewCell: UITableViewCell {
     @IBOutlet weak var eventPlaces: UILabel!
     @IBOutlet weak var eventThumbnail: UIImageView!
     
+    var event: [Event]? = nil
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -28,5 +30,21 @@ class FavoriteEventsTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
+    
+    @IBAction func removeEventFromFav(_ sender: Any) {
+        event = CoreDataHandler.fetchObject()
+        
+        for event in event! {
+            if event.eventname == eventName.text {
+                if CoreDataHandler.deleteObject(event: event) {
+                    
+                }
+            }
+        }
+        
+        
+    }
+    
 }
+
 

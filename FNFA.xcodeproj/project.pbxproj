@@ -26,6 +26,7 @@
 		0061FD7C1FFA860500B7FBFA /* ArticleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0061FD7B1FFA860500B7FBFA /* ArticleTableViewCell.swift */; };
 		0072DB131FF01C3900C4F680 /* SingleEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0072DB121FF01C3900C4F680 /* SingleEventViewController.swift */; };
 		0072DB151FF01DB800C4F680 /* EventsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0072DB141FF01DB800C4F680 /* EventsList.swift */; };
+		008BEF42200547C100F421FF /* dateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 008BEF41200547C100F421FF /* dateFormatter.swift */; };
 		00E8075B1FFBA8EA00A56AD8 /* FNFA.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 00E807591FFBA8EA00A56AD8 /* FNFA.xcdatamodeld */; };
 		00E8075D1FFBA9BF00A56AD8 /* CoreDataHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00E8075C1FFBA9BF00A56AD8 /* CoreDataHandler.swift */; };
 		00E807611FFBB67900A56AD8 /* FavoriteEventsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00E807601FFBB67900A56AD8 /* FavoriteEventsViewController.swift */; };
@@ -66,6 +67,7 @@
 		0061FD7B1FFA860500B7FBFA /* ArticleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleTableViewCell.swift; sourceTree = "<group>"; };
 		0072DB121FF01C3900C4F680 /* SingleEventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleEventViewController.swift; sourceTree = "<group>"; };
 		0072DB141FF01DB800C4F680 /* EventsList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsList.swift; sourceTree = "<group>"; };
+		008BEF41200547C100F421FF /* dateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = dateFormatter.swift; sourceTree = "<group>"; };
 		00E8075A1FFBA8EA00A56AD8 /* FNFA.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = FNFA.xcdatamodel; sourceTree = "<group>"; };
 		00E8075C1FFBA9BF00A56AD8 /* CoreDataHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataHandler.swift; sourceTree = "<group>"; };
 		00E807601FFBB67900A56AD8 /* FavoriteEventsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteEventsViewController.swift; sourceTree = "<group>"; };
@@ -120,6 +122,7 @@
 				005BDDC5200402B8006DD218 /* loadJSON.swift */,
 				0061FD7B1FFA860500B7FBFA /* ArticleTableViewCell.swift */,
 				00E807621FFBEDC200A56AD8 /* FavoriteEventsTableViewCell.swift */,
+				008BEF41200547C100F421FF /* dateFormatter.swift */,
 				0072DB141FF01DB800C4F680 /* EventsList.swift */,
 				004253BA1FE44E1B00F28931 /* Main.storyboard */,
 				004253D61FE44F0A00F28931 /* le_festival.storyboard */,
@@ -266,6 +269,7 @@
 				0072DB131FF01C3900C4F680 /* SingleEventViewController.swift in Sources */,
 				00E8075B1FFBA8EA00A56AD8 /* FNFA.xcdatamodeld in Sources */,
 				005BDDC6200402B8006DD218 /* loadJSON.swift in Sources */,
+				008BEF42200547C100F421FF /* dateFormatter.swift in Sources */,
 				0061FD7C1FFA860500B7FBFA /* ArticleTableViewCell.swift in Sources */,
 				00E807631FFBEDC200A56AD8 /* FavoriteEventsTableViewCell.swift in Sources */,
 				004253B71FE44E1B00F28931 /* AppDelegate.swift in Sources */,

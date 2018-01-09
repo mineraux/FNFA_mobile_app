@@ -17,6 +17,7 @@ extension Formatter {
         return formatter
     }()
 }
+
 extension Date {
     var iso8601: String {
         return Formatter.iso8601.string(from: self)
@@ -26,29 +27,6 @@ extension Date {
 extension String {
     var dateFromISO8601: Date? {
         return Formatter.iso8601.date(from: self)   // "Mar 22, 2017, 10:22 AM"
-    }
-}
-
-extension Date {
-    
-    var nameNumberDate: String {
-        let formatter = DateFormatter()
-        formatter.locale = Locale(identifier: "fr_FR")
-        formatter.dateFormat = "EEEE d"
-        return formatter.string(from: self)
-    }
-    var nameNumberMonthDate: String {
-        let formatter = DateFormatter()
-        formatter.locale = Locale(identifier: "fr_FR")
-        formatter.dateFormat = "EEEE d MMMM"
-        return formatter.string(from: self)
-    }
-    
-    var hourDate: String {
-        let formatter = DateFormatter()
-        formatter.locale = Locale(identifier: "fr_FR")
-        formatter.dateFormat = "HH:mm"
-        return formatter.string(from: self)
     }
 }
 
@@ -116,6 +94,7 @@ class allEventsController: UIViewController, UITableViewDelegate, UITableViewDat
         var initialDateDropDownOption = [String]()
         
         let formatter = ISO8601DateFormatter()
+        
         for date in filteredEvents {
             let dateIso = date.startingDate
             if let date = formatter.date(from: dateIso) {
@@ -126,6 +105,8 @@ class allEventsController: UIViewController, UITableViewDelegate, UITableViewDat
                 }
             }
         }
+        
+        
     }
     
     override func didReceiveMemoryWarning() {
@@ -151,8 +132,7 @@ class allEventsController: UIViewController, UITableViewDelegate, UITableViewDat
         formatter.formatOptions = [.withYear, .withMonth, .withDay, .withTime, .withDashSeparatorInDate, .withColonSeparatorInTime]
         formatter.timeZone = TimeZone(identifier: "Europe/Paris")
         if let date = formatter.date(from: dateIso) {
-            let string = date.hourDate
-            cell.eventDate!.text = string
+             cell.eventDate!.text = date.hourDate
         }
         
         cell.eventPlace!.text = filteredEvents[indexPath.row].place.joined(separator: ", ")
@@ -232,13 +212,15 @@ class allEventsController: UIViewController, UITableViewDelegate, UITableViewDat
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         performSegue(withIdentifier: "showDetails", sender: self)
+        tableView.deselectRow(at: indexPath, animated: true)
     }
     
-    //    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-    //        if let destination = segue.destination as? SingleEventViewController {
-    //            destination.event = events[(tableView.indexPathForSelectedRow?.row)!]
-    //        }
-    //    }
+        override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+            if let destination = segue.destination as? SingleEventViewController {
+                destination.event = events[(tableView.indexPathForSelectedRow?.row)!]
+            }
+        }
+    
     
     /*
      // MARK: - Navigation
@@ -391,13 +373,21 @@ class dropDownView: UIView, UITableViewDelegate, UITableViewDataSource {
         //2018-04-04T23:00:00Z
         //formatter.dateFormat = "EEEE d"
         
-        let dateSource = dropDownOptions[indexPath.row]
+        //let dateSource = dropDownOptions[indexPath.row]
         
         let stringFromDate = Date().iso8601    // "2017-03-22T13:22:13.933Z"
         
         if let dateFromString = stringFromDate.dateFromISO8601 {
             print(dateFromString.iso8601)      // "2017-03-22T13:22:13.933Z"
         }
+        
+        print(dropDownOptions[indexPath.row])
+        filteredEvents = filteredEvents.filter { $0.startingDateDayNumber == dropDownOptions[indexPath.row] }
+        
+        //permet le reload d'une tableView dans un autre controlleur
+        //(ici self.reloadData aurait faire référence au DropDown)
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "reload"), object: nil)
+        
     }
 }
 

@@ -49,7 +49,10 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="eventName" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uWH-7x-MWE">
-                                                    <rect key="frame" x="103" y="42" width="88" height="21"/>
+                                                    <rect key="frame" x="103" y="42" width="180" height="21"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="180" id="fWN-Mi-GIH"/>
+                                                    </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -79,11 +82,20 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0U5-Dw-8af">
+                                                    <rect key="frame" x="292" y="33" width="75" height="30"/>
+                                                    <state key="normal" title="removeFav"/>
+                                                    <connections>
+                                                        <action selector="removeEventFromFav:" destination="Xsg-Sk-Nxx" eventType="touchUpInside" id="KbK-Dn-7Me"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstItem="7mN-hj-QxE" firstAttribute="top" secondItem="0U5-Dw-8af" secondAttribute="bottom" constant="7" id="8O7-2z-UEI"/>
                                                 <constraint firstItem="uWH-7x-MWE" firstAttribute="leading" secondItem="4lN-PW-mk3" secondAttribute="trailing" constant="8" id="H1f-ot-MOs"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="7mN-hj-QxE" secondAttribute="bottom" constant="3" id="NLh-se-xYe"/>
                                                 <constraint firstItem="uWH-7x-MWE" firstAttribute="top" secondItem="Duc-xN-DMh" secondAttribute="bottom" constant="10" id="SJp-lc-IVO"/>
+                                                <constraint firstItem="0U5-Dw-8af" firstAttribute="leading" secondItem="uWH-7x-MWE" secondAttribute="trailing" constant="9" id="Vyd-Us-Kuh"/>
                                                 <constraint firstItem="7mN-hj-QxE" firstAttribute="leading" secondItem="Vl3-Pn-e1g" secondAttribute="trailing" constant="63" id="bNn-mA-QRu"/>
                                                 <constraint firstItem="4lN-PW-mk3" firstAttribute="leading" secondItem="0pL-V9-Tnk" secondAttribute="leadingMargin" id="bjO-l0-cZz"/>
                                                 <constraint firstItem="4lN-PW-mk3" firstAttribute="top" secondItem="0pL-V9-Tnk" secondAttribute="topMargin" id="hWS-dm-a0N"/>
