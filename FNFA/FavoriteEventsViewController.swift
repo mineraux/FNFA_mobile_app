@@ -16,11 +16,17 @@ class FavoriteEventsViewController: UIViewController, UITableViewDelegate, UITab
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        NotificationCenter.default.addObserver(self, selector: #selector(loadList), name: NSNotification.Name(rawValue: "load"), object: nil)
         
         tableView.rowHeight = 110
         
         tableView.delegate = self
         tableView.dataSource = self
+    }
+    
+    @objc func loadList(){
+        //load data here
+        self.tableView.reloadData()
     }
     
     override func didReceiveMemoryWarning() {

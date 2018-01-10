@@ -42,7 +42,7 @@ class FavoriteEventsTableViewCell: UITableViewCell {
             }
         }
         
-        
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "load"), object: nil)
     }
     
 }
