@@ -34,6 +34,8 @@ extension Notification.Name {
     static let reload = Notification.Name("reload")
 }
 
+var darkBlue = UIColor(red: 10/255, green: 18/255, blue: 40/255, alpha: 1.0)
+
 class allEventsController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet weak var tableView: UITableView!
@@ -41,11 +43,14 @@ class allEventsController: UIViewController, UITableViewDelegate, UITableViewDat
     @IBOutlet weak var filterSeancesSpe: UIButton!
     @IBOutlet weak var filterSalonDesEcritures: UIButton!
     
+    @IBOutlet weak var backToHomeButton: UIButton!
     @IBOutlet weak var filtersTrailingConstraint: NSLayoutConstraint!
     var isFiltersHidden = true
     var activeFilters = [String]()
     
     var button = dropDownBtn()
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -78,7 +83,7 @@ class allEventsController: UIViewController, UITableViewDelegate, UITableViewDat
         // MARK: - DropDown button init
         
         button = dropDownBtn.init(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
-        button.setTitle("Date", for: .normal)
+        
         button.translatesAutoresizingMaskIntoConstraints = false
         self.view.addSubview(button)
         
@@ -93,6 +98,7 @@ class allEventsController: UIViewController, UITableViewDelegate, UITableViewDat
         button.dropView.dropDownOptions =  [String]()
         var initialDateDropDownOption = [String]()
         
+        
         let formatter = ISO8601DateFormatter()
         
         for date in filteredEvents {
@@ -104,9 +110,8 @@ class allEventsController: UIViewController, UITableViewDelegate, UITableViewDat
                     initialDateDropDownOption.append(dateIso)
                 }
             }
+            button.setTitle(button.dropView.dropDownOptions[0], for: .normal)
         }
-        
-        
     }
     
     override func didReceiveMemoryWarning() {
@@ -116,15 +121,64 @@ class allEventsController: UIViewController, UITableViewDelegate, UITableViewDat
     
     // MARK: - Table view data source
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+//    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+//        return filteredEvents.count
+//    }
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
         return filteredEvents.count
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 1
+    }
+    
+    // Add space between 
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 16
+    }
+    
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        let footerView = UIView()
+        footerView.backgroundColor = darkBlue
+        
+        return footerView
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 0
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let headerView = UIView()
+        headerView.backgroundColor = UIColor.clear
+        
+        return headerView
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! ArticleTableViewCell
         
+        // add the below code to provide a border to table view cell
+        
+        // provide the border color , in this case it is blue
+//        cell.contentView.layer.borderColor = UIColor.blue.cgColor
+//        
+//        // provide the border width
+//        
+//        cell.contentView.layer.borderWidth = 5;
+//        
+//        // in order to add rounded corner to the table view cell provide its cornerRadius and set masksToBounds = // true. If maskstoBounds is not set it will not work
+//        
+//        cell.contentView.layer.masksToBounds = true
+//        cell.contentView.layer.cornerRadius = 10
+//        cell.backgroundColor = UIColor.red
+        
+        //cell.contentView.backgroundColor = UIColor.blue
+        //cell.backgroundColor = UIColor.red
+        
         cell.eventTitle!.text = filteredEvents[indexPath.row].name
-        cell.eventCategory!.text = filteredEvents[indexPath.row].category
+        cell.eventCategory!.text = filteredEvents[indexPath.row].category.uppercased()
         
         let dateIso = filteredEvents[indexPath.row].startingDate
         
@@ -152,7 +206,7 @@ class allEventsController: UIViewController, UITableViewDelegate, UITableViewDat
         
         return cell
     }
-    
+
     // MARK: - Filter
     
     // Menu show/hide on click
@@ -181,7 +235,7 @@ class allEventsController: UIViewController, UITableViewDelegate, UITableViewDat
             sender.backgroundColor = .clear
         } else {
             activeFilters.append((sender.titleLabel?.text)!)
-            sender.backgroundColor = UIColor.darkGray
+            sender.backgroundColor = darkBlue
         }
         
         filterEvent()
@@ -221,7 +275,6 @@ class allEventsController: UIViewController, UITableViewDelegate, UITableViewDat
             }
         }
     
-    
     /*
      // MARK: - Navigation
      
@@ -254,7 +307,7 @@ class dropDownBtn: UIButton, dropDownProtocol {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        self.backgroundColor = UIColor.darkGray
+        self.backgroundColor = darkBlue
         
         dropView = dropDownView.init(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
         dropView.delegate = self
@@ -326,11 +379,12 @@ class dropDownView: UIView, UITableViewDelegate, UITableViewDataSource {
     
     var delegate : dropDownProtocol!
     
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        tableView.backgroundColor = UIColor.darkGray
-        self.backgroundColor = UIColor.darkGray
+        tableView.backgroundColor = darkBlue
+        self.backgroundColor = darkBlue
         
         tableView.delegate = self
         tableView.dataSource = self
@@ -343,6 +397,8 @@ class dropDownView: UIView, UITableViewDelegate, UITableViewDataSource {
         tableView.rightAnchor.constraint(equalTo: self.rightAnchor).isActive = true
         tableView.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
         tableView.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
+        
+        tableView.separatorStyle = .none
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -361,7 +417,8 @@ class dropDownView: UIView, UITableViewDelegate, UITableViewDataSource {
         let cell = UITableViewCell()
         
         cell.textLabel?.text = dropDownOptions[indexPath.row]
-        cell.backgroundColor = UIColor.darkGray
+        cell.textLabel?.textColor = UIColor.white
+        cell.backgroundColor = darkBlue
         
         return cell
     }

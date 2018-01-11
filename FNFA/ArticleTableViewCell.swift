@@ -23,7 +23,6 @@ class ArticleTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-        
     }
     
     @IBAction func addToFavTn(_ sender: Any) {
