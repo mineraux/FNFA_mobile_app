@@ -45,15 +45,18 @@ class allEventsController: UIViewController, UITableViewDelegate, UITableViewDat
     
     @IBOutlet weak var backToHomeButton: UIButton!
     @IBOutlet weak var filtersTrailingConstraint: NSLayoutConstraint!
+    
+    var event: [Event]? = nil
+    
     var isFiltersHidden = true
     var activeFilters = [String]()
     
     var button = dropDownBtn()
     
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        event = CoreDataHandler.fetchObject()
         
         NotificationCenter.default.addObserver(self, selector: #selector(reloadTableData), name: .reload, object: nil)
         
@@ -61,7 +64,7 @@ class allEventsController: UIViewController, UITableViewDelegate, UITableViewDat
             self.tableView.reloadData()
         }
         
-        tableView.rowHeight = 110
+        tableView.rowHeight = 90
         
         tableView.delegate = self
         tableView.dataSource = self
@@ -112,6 +115,12 @@ class allEventsController: UIViewController, UITableViewDelegate, UITableViewDat
             }
             button.setTitle(button.dropView.dropDownOptions[0], for: .normal)
         }
+        
+        tableView.backgroundColor = UIColor.white.withAlphaComponent(0)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        self.tableView.reloadData()
     }
     
     override func didReceiveMemoryWarning() {
@@ -159,28 +168,10 @@ class allEventsController: UIViewController, UITableViewDelegate, UITableViewDat
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! ArticleTableViewCell
         
-        // add the below code to provide a border to table view cell
+        cell.eventTitle!.text = filteredEvents[indexPath.section].name
+        cell.eventCategory!.text = filteredEvents[indexPath.section].category.uppercased()
         
-        // provide the border color , in this case it is blue
-//        cell.contentView.layer.borderColor = UIColor.blue.cgColor
-//        
-//        // provide the border width
-//        
-//        cell.contentView.layer.borderWidth = 5;
-//        
-//        // in order to add rounded corner to the table view cell provide its cornerRadius and set masksToBounds = // true. If maskstoBounds is not set it will not work
-//        
-//        cell.contentView.layer.masksToBounds = true
-//        cell.contentView.layer.cornerRadius = 10
-//        cell.backgroundColor = UIColor.red
-        
-        //cell.contentView.backgroundColor = UIColor.blue
-        //cell.backgroundColor = UIColor.red
-        
-        cell.eventTitle!.text = filteredEvents[indexPath.row].name
-        cell.eventCategory!.text = filteredEvents[indexPath.row].category.uppercased()
-        
-        let dateIso = filteredEvents[indexPath.row].startingDate
+        let dateIso = filteredEvents[indexPath.section].startingDate
         
         let formatter = ISO8601DateFormatter()
         formatter.formatOptions = [.withYear, .withMonth, .withDay, .withTime, .withDashSeparatorInDate, .withColonSeparatorInTime]
@@ -188,10 +179,10 @@ class allEventsController: UIViewController, UITableViewDelegate, UITableViewDat
         if let date = formatter.date(from: dateIso) {
              cell.eventDate!.text = date.hourDate
         }
+    
+        cell.eventPlace!.text = filteredEvents[indexPath.section].place.joined(separator: ", ")
         
-        cell.eventPlace!.text = filteredEvents[indexPath.row].place.joined(separator: ", ")
-        
-        cell.eventTitle!.text = filteredEvents[indexPath.row].name
+        cell.eventTitle!.text = filteredEvents[indexPath.section].name
         
         var imageName = cell.eventTitle.text!.replacingOccurrences(of: " ", with: "_", options: .literal, range: nil)
         imageName = imageName.replacingOccurrences(of: "°", with: "", options: .literal, range: nil)
@@ -202,6 +193,16 @@ class allEventsController: UIViewController, UITableViewDelegate, UITableViewDat
         
         if cell.eventThumbnail!.image == nil {
             cell.eventThumbnail!.image = UIImage(named:"default")
+        }
+        
+        cell.eventThumbnail.layer.cornerRadius = 4
+        cell.eventThumbnail.layer.masksToBounds = true
+        
+        for i in event! {
+            if i.eventname != cell.eventTitle.text! {
+            } else {
+                cell.addToFavBtn.setImage(UIImage(named: "heart_full"), for: .normal)
+            }
         }
         
         return cell
@@ -271,7 +272,7 @@ class allEventsController: UIViewController, UITableViewDelegate, UITableViewDat
     
         override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
             if let destination = segue.destination as? SingleEventViewController {
-                destination.event = events[(tableView.indexPathForSelectedRow?.row)!]
+                destination.event = events[(tableView.indexPathForSelectedRow?.section)!]
             }
         }
     
@@ -437,8 +438,6 @@ class dropDownView: UIView, UITableViewDelegate, UITableViewDataSource {
         if let dateFromString = stringFromDate.dateFromISO8601 {
             print(dateFromString.iso8601)      // "2017-03-22T13:22:13.933Z"
         }
-        
-        print(dropDownOptions[indexPath.row])
         filteredEvents = filteredEvents.filter { $0.startingDateDayNumber == dropDownOptions[indexPath.row] }
         
         //permet le reload d'une tableView dans un autre controlleur
@@ -447,17 +446,3 @@ class dropDownView: UIView, UITableViewDelegate, UITableViewDataSource {
         
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-

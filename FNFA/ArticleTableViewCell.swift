@@ -16,31 +16,44 @@ class ArticleTableViewCell: UITableViewCell {
     @IBOutlet weak var eventPlace: UILabel!    
     @IBOutlet weak var eventThumbnail: UIImageView!
     @IBOutlet weak var addToFavBtn: UIButton!
+    @IBOutlet weak var allEventCellView: UIView!
     
     var event: [Event]? = nil
     var eventAlreadyFav = true
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        
+        event = CoreDataHandler.fetchObject()
+        
+        allEventCellView.layer.cornerRadius = 6
+        self.contentView.backgroundColor = UIColor.white.withAlphaComponent(0)
+        self.backgroundColor = UIColor.white.withAlphaComponent(0)
     }
     
     @IBAction func addToFavTn(_ sender: Any) {
         // MARK: - CoreDataManager
         
         event = CoreDataHandler.fetchObject()
+
         if event?.count == 0 {
             if CoreDataHandler.saveObject(eventname: eventTitle.text!, eventcategory: eventCategory.text!, eventdate: eventDate.text!, eventplaces: eventPlace.text!) {
                 event = CoreDataHandler.fetchObject()
+                self.addToFavBtn.setImage(UIImage(named: "heart_full"), for: .normal)
             }
-        }
-        
-        // Gestion du cas ou un événement est déjà en favoris
-        for i in event! {
-            if i.eventname != eventTitle.text! {
-                eventAlreadyFav = false
-            } else {
-                return
+        } else {
+            // Gestion du cas ou un événement est déjà en favoris
+            for i in event! {
+                if i.eventname != eventTitle.text! {
+                    eventAlreadyFav = false
+                    self.addToFavBtn.setImage(UIImage(named: "heart_full"), for: .normal)
+                } else {
+                    self.addToFavBtn.setImage(UIImage(named: "heart_empty"), for: .normal)
+                    if CoreDataHandler.deleteObject(event: i) {
+                        event = CoreDataHandler.fetchObject()
+                    }
+                    return
+                }
             }
         }
         
