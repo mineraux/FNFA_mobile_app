@@ -8,9 +8,9 @@
 
 import Foundation
 
+// Structure du JSON
+
 struct EventList : Decodable {
-    // Valeurs conditionnelles pour le cas où une valeur d'un objet du Json n'est pas définie
-    // (Ex : si un objet n'a pas de link)
     let id: Int
     let name: String
     var excerpt: String
@@ -23,15 +23,11 @@ struct EventList : Decodable {
 }
 
 struct CategoryList : Decodable {
-    // Valeurs conditionnelles pour le cas où une valeur d'un objet du Json n'est pas définie
-    // (Ex : si un objet n'a pas de link)
     let id: Int
     let name: String
 }
 
 struct PlaceList : Decodable {
-    // Valeurs conditionnelles pour le cas où une valeur d'un objet du Json n'est pas définie
-    // (Ex : si un objet n'a pas de link)
     let id: Int
     let name: String
 }

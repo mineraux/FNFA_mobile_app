@@ -7,6 +7,8 @@
 //
 
 import UIKit
+// TODO : A refacto dans un fichier séparé
+
 extension Formatter {
     static let iso8601: DateFormatter = {
         let formatter = DateFormatter()
@@ -34,15 +36,14 @@ extension Notification.Name {
     static let reload = Notification.Name("reload")
 }
 
+//Définition des couleurs en variable
 var darkBlue = UIColor(red: 10/255, green: 18/255, blue: 40/255, alpha: 1.0)
 
 class allEventsController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet weak var tableView: UITableView!
-    
     @IBOutlet weak var filterSeancesSpe: UIButton!
     @IBOutlet weak var filterSalonDesEcritures: UIButton!
-    
     @IBOutlet weak var backToHomeButton: UIButton!
     @IBOutlet weak var filtersTrailingConstraint: NSLayoutConstraint!
     
@@ -53,26 +54,31 @@ class allEventsController: UIViewController, UITableViewDelegate, UITableViewDat
     
     var button = dropDownBtn()
     
+    // Fonction pour reload la tableView quand la notification .reload est envoyé (cf : un peu plus bas => NotificationCeter.default.addObserver)
+    @objc func reloadTableData(_ notification: Notification) {
+        self.tableView.reloadData()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         event = CoreDataHandler.fetchObject()
         
+        // Ajout d'un observateur sur la notification reload pour executé la fonction reloadTableData
         NotificationCenter.default.addObserver(self, selector: #selector(reloadTableData), name: .reload, object: nil)
         
         downloadJson {
+            // On rafraichit la table une fois le JSON chargé
             self.tableView.reloadData()
         }
         
+        // Définition de la taille, du délégé et du DataSource du tableView des événements
         tableView.rowHeight = 90
-        
         tableView.delegate = self
         tableView.dataSource = self
         
         // MARK: - Design filters button
-        
         filtersTrailingConstraint.constant = 320
-        
         filterSeancesSpe.backgroundColor = .clear
         filterSeancesSpe.layer.cornerRadius = 10
         filterSeancesSpe.layer.borderWidth = 2
@@ -84,26 +90,23 @@ class allEventsController: UIViewController, UITableViewDelegate, UITableViewDat
         filterSalonDesEcritures.layer.borderColor = UIColor.black.cgColor
         
         // MARK: - DropDown button init
-        
         button = dropDownBtn.init(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
-        
         button.translatesAutoresizingMaskIntoConstraints = false
         self.view.addSubview(button)
-        
-        
+
         NSLayoutConstraint(item: button, attribute: NSLayoutAttribute.leading, relatedBy: NSLayoutRelation.equal, toItem: view, attribute: NSLayoutAttribute.leadingMargin, multiplier: 1.0, constant: 20.0).isActive = true
         NSLayoutConstraint(item: button, attribute: NSLayoutAttribute.top, relatedBy: NSLayoutRelation.equal, toItem: view, attribute: NSLayoutAttribute.topMargin, multiplier: 1.0, constant: 20.0).isActive = true
         
         button.widthAnchor.constraint(equalToConstant: 150).isActive = true
         button.heightAnchor.constraint(equalToConstant: 40).isActive = true
         
-        //button.dropView.dropDownOptions =  ["Mercredi 4", "Jeudi 5", "Vendredi 6", "Samedi 7", "Dimanche 8"]
+        // Initialisation d'un tableau qui va contenir chaque date présente dans le filtre par date
         button.dropView.dropDownOptions =  [String]()
         var initialDateDropDownOption = [String]()
         
-        
         let formatter = ISO8601DateFormatter()
         
+        // Ajout des dates dans le tableau créé précédement
         for date in filteredEvents {
             let dateIso = date.startingDate
             if let date = formatter.date(from: dateIso) {
@@ -113,12 +116,15 @@ class allEventsController: UIViewController, UITableViewDelegate, UITableViewDat
                     initialDateDropDownOption.append(dateIso)
                 }
             }
+            
+            // Titre de la liste = 1ere valeur du tableau
             button.setTitle(button.dropView.dropDownOptions[0], for: .normal)
         }
         
         tableView.backgroundColor = UIColor.white.withAlphaComponent(0)
     }
     
+    // reload tableView quand on arrive sur la vue
     override func viewWillAppear(_ animated: Bool) {
         self.tableView.reloadData()
     }
@@ -130,10 +136,7 @@ class allEventsController: UIViewController, UITableViewDelegate, UITableViewDat
     
     // MARK: - Table view data source
     
-//    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        return filteredEvents.count
-//    }
-    
+    // Utilisation des section pour pouvoir ajouter des espaces entre les cellules
     func numberOfSections(in tableView: UITableView) -> Int {
         return filteredEvents.count
     }
@@ -142,11 +145,12 @@ class allEventsController: UIViewController, UITableViewDelegate, UITableViewDat
         return 1
     }
     
-    // Add space between 
+    // Taille de l'espace entre les cellules de la tableView
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         return 16
     }
     
+    // Couleur du backgroud de l'espace entre les cellules
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         let footerView = UIView()
         footerView.backgroundColor = darkBlue
@@ -165,6 +169,7 @@ class allEventsController: UIViewController, UITableViewDelegate, UITableViewDat
         return headerView
     }
     
+    // Définition du contenu de chaque cellule
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! ArticleTableViewCell
         
@@ -175,15 +180,20 @@ class allEventsController: UIViewController, UITableViewDelegate, UITableViewDat
         
         let formatter = ISO8601DateFormatter()
         formatter.formatOptions = [.withYear, .withMonth, .withDay, .withTime, .withDashSeparatorInDate, .withColonSeparatorInTime]
+        // Timezone pour avoir la bonne date
+        // (dans notre fichier JSON, le fuseau horaire n'est pas spécifié, la valeur par défaut est GMT => décalage de plusieurs heure avec nos date)
         formatter.timeZone = TimeZone(identifier: "Europe/Paris")
         if let date = formatter.date(from: dateIso) {
              cell.eventDate!.text = date.hourDate
         }
-    
+        
+        // eventPlace = tableau car certains événements possedent plusieurs lieux
         cell.eventPlace!.text = filteredEvents[indexPath.section].place.joined(separator: ", ")
         
         cell.eventTitle!.text = filteredEvents[indexPath.section].name
         
+        // Gestion des caractères spéciaux pour définir dynamiquement l'image de chaqué événement. Il faut que l'image est le même nom
+        // que l'évenement (Ex : eventName = Scéance spéciale ; nom image = sceance_speciale.png
         var imageName = cell.eventTitle.text!.replacingOccurrences(of: " ", with: "_", options: .literal, range: nil)
         imageName = imageName.replacingOccurrences(of: "°", with: "", options: .literal, range: nil)
         imageName = imageName.replacingOccurrences(of: "é|è|ê", with: "e", options: .literal, range: nil)
@@ -195,17 +205,34 @@ class allEventsController: UIViewController, UITableViewDelegate, UITableViewDat
             cell.eventThumbnail!.image = UIImage(named:"default")
         }
         
+        // Corner radius sur l'image de l'évenement
         cell.eventThumbnail.layer.cornerRadius = 4
         cell.eventThumbnail.layer.masksToBounds = true
         
+        // Pour tout les événements enregistrés,
+        // si le nom de l'événement enregistré = nom de l'événement sur le quel on a cliqué (pour l'ajout en favoris)
+        // on change l'image du btn ajout en favoris (par défault le coeur est vide)
+        for i in event! {
+            if i.eventname != cell.eventTitle.text! {
+            } else {
+                // Image du btn d'ajout en favoris = coeur rempli
+                cell.addToFavBtn.setImage(UIImage(named: "heart_full"), for: .normal)
+            }
+        }
+        
+        return cell
+    }
+    
+    //update l'icone de favoris dans le cas où un evenement est retiré des favoris
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! ArticleTableViewCell
+
         for i in event! {
             if i.eventname != cell.eventTitle.text! {
             } else {
                 cell.addToFavBtn.setImage(UIImage(named: "heart_full"), for: .normal)
             }
         }
-        
-        return cell
     }
 
     // MARK: - Filter
@@ -229,9 +256,11 @@ class allEventsController: UIViewController, UITableViewDelegate, UITableViewDat
         isFiltersHidden = !isFiltersHidden
     }
     
+    // Filtre par catégories
     @IBAction func changeFilter (_ sender: UIButton) {
+        
+        // Retire le filtre si l'élément cliqué est déjà dans la liste de filtres courants sinon, on l'ajoute
         if let index = activeFilters.index(of: (sender.titleLabel?.text)!) {
-            
             activeFilters.remove(at: index)
             sender.backgroundColor = .clear
         } else {
@@ -251,10 +280,6 @@ class allEventsController: UIViewController, UITableViewDelegate, UITableViewDat
             filteredEvents = filteredEvents.filter { $0.category == filter }
         }
         
-        self.tableView.reloadData()
-    }
-    
-    @objc func reloadTableData(_ notification: Notification) {
         self.tableView.reloadData()
     }
     
@@ -327,6 +352,8 @@ class dropDownBtn: UIButton, dropDownProtocol {
     
     var isOpen = false
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        
+        // Si la liste est fermé on l'ouvre
         if isOpen == false {
             
             isOpen = true
@@ -340,7 +367,9 @@ class dropDownBtn: UIButton, dropDownProtocol {
                 self.dropView.layoutIfNeeded()
                 self.dropView.center.y += self.dropView.frame.height / 2
             }, completion: nil)
-        } else {
+        }
+        // sinon on la ferme
+        else {
             isOpen = false
             
             NSLayoutConstraint.deactivate([self.height])
@@ -354,6 +383,7 @@ class dropDownBtn: UIButton, dropDownProtocol {
         }
     }
     
+    // replis de la liste
     func dismissDropDown(){
         isOpen = false
         
@@ -424,6 +454,7 @@ class dropDownView: UIView, UITableViewDelegate, UITableViewDataSource {
         return cell
     }
     
+    // Si une date est sélectionnée, on filtre le tableau des événements avec la valeur sélectionnée et on lance la notification reload
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.delegate.dropDownPressed(string: dropDownOptions[indexPath.row])
         filteredEvents = events

@@ -110,7 +110,6 @@ func downloadJson(completed: @escaping () -> ()) {
         }
         
         filteredEvents = events
-        //print(filteredEvents)
         DispatchQueue.main.async {
             completed()
         }

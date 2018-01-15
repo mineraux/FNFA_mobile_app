@@ -34,12 +34,14 @@ class FavoriteEventsViewController: UIViewController, UITableViewDelegate, UITab
         // Dispose of any resources that can be recreated.
     }
     
+    // reload la tableView quand on arrive sur la page
     override func viewDidAppear(_ animated: Bool) {
         event = CoreDataHandler.fetchObject()
         
         self.tableView.reloadData()
     }
     
+    // Nombre de ligne dans la tableView = nombre d'élément enregistré
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         event = CoreDataHandler.fetchObject()
         return (event?.count)!
@@ -56,7 +58,8 @@ class FavoriteEventsViewController: UIViewController, UITableViewDelegate, UITab
         cell.eventDate!.text = event![indexPath.row].eventdate
         cell.eventPlaces!.text = event![indexPath.row].eventplaces
         
-        // Gestion des caractères spéciaux
+        // Gestion des caractères spéciaux pour définir dynamiquement l'image de chaqué événement. Il faut que l'image est le même nom
+        // que l'évenement (Ex : eventName = Scéance spéciale ; nom image = sceance_speciale.png
         var imageName = cell.eventName.text!.replacingOccurrences(of: " ", with: "_", options: .literal, range: nil)
         imageName = imageName.replacingOccurrences(of: "°", with: "", options: .literal, range: nil)
         imageName = imageName.replacingOccurrences(of: "é|è|ê", with: "e", options: .literal, range: nil)
@@ -70,8 +73,6 @@ class FavoriteEventsViewController: UIViewController, UITableViewDelegate, UITab
         
         return cell
     }
-    
-    
     
     /*
      // MARK: - Navigation

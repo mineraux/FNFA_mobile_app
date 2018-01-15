@@ -20,7 +20,6 @@ class SingleEventViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //titleSingleEventLabel.text = event?.name
         
         eventName.text = event?.name
         
@@ -31,8 +30,7 @@ class SingleEventViewController: UIViewController {
         if let date = formatter.date(from: dateIso!) {
             eventDate.text = date.hourDate
         }
-        
-        //A modifier pour ressortir tout les lieux
+    
         eventPlace.text = event?.place.joined(separator: ", ")
         eventExcerpt.text = event?.excerpt
     }

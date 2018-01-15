@@ -18,9 +18,11 @@ class CoreDataHandler: NSObject {
     
     class func saveObject(eventname: String, eventcategory: String, eventdate: String, eventplaces: String) -> Bool {
         let context = getContext()
+        // Référence à l'entité Event (cf : FNFA.xcdatamodeld)
         let entity = NSEntityDescription.entity(forEntityName: "Event", in: context)
         let manageObject = NSManagedObject(entity: entity!, insertInto: context)
         
+        // Déclaration des éléments constituants l'entité "Event"
         manageObject.setValue(eventname, forKey: "eventname")
         manageObject.setValue(eventcategory, forKey: "eventcategory")
         manageObject.setValue(eventdate, forKey: "eventdate")
@@ -45,6 +47,7 @@ class CoreDataHandler: NSObject {
         }
     }
     
+    // Suppression d'un événement
     class func deleteObject(event: Event) -> Bool {
         let context = getContext()
         context.delete(event)
@@ -57,6 +60,7 @@ class CoreDataHandler: NSObject {
         }
     }
     
+    // Suppression de tout les événements
     class func cleanDelete() -> Bool {
         let context = getContext()
         let delete = NSBatchDeleteRequest(fetchRequest: Event.fetchRequest())
@@ -68,6 +72,5 @@ class CoreDataHandler: NSObject {
             return false
         }
     }
-    
 }
 

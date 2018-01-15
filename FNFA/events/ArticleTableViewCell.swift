@@ -36,17 +36,22 @@ class ArticleTableViewCell: UITableViewCell {
         
         event = CoreDataHandler.fetchObject()
 
+        // Si aucun événement est enregistré, on ajoute l'événement au clique sur le btn
         if event?.count == 0 {
             if CoreDataHandler.saveObject(eventname: eventTitle.text!, eventcategory: eventCategory.text!, eventdate: eventDate.text!, eventplaces: eventPlace.text!) {
                 event = CoreDataHandler.fetchObject()
                 self.addToFavBtn.setImage(UIImage(named: "heart_full"), for: .normal)
             }
         } else {
-            // Gestion du cas ou un événement est déjà en favoris
+            // Si il y a déjà au moins 1 event enregistré, on test si le nom de l'événement cliqué match avec un evenement enregistré
+            // Si non, on met l'image du coeur plein (pas en fav)
+            // Si oui, on met l'image du coeur vide (en fav) et on supprime l'événement de la liste des favoris
             for i in event! {
                 if i.eventname != eventTitle.text! {
                     eventAlreadyFav = false
-                    self.addToFavBtn.setImage(UIImage(named: "heart_full"), for: .normal)
+                    let image = UIImage(named: "heart_full")
+                    self.addToFavBtn.setImage(image, for: .normal)
+                    
                 } else {
                     self.addToFavBtn.setImage(UIImage(named: "heart_empty"), for: .normal)
                     if CoreDataHandler.deleteObject(event: i) {
@@ -57,9 +62,11 @@ class ArticleTableViewCell: UITableViewCell {
             }
         }
         
+        // Si evenement pas encore en favoris, on l'enregistre
         if eventAlreadyFav == false {
             if CoreDataHandler.saveObject(eventname: eventTitle.text!, eventcategory: eventCategory.text!, eventdate: eventDate.text!, eventplaces: eventPlace.text!) {
                 event = CoreDataHandler.fetchObject()
+                
                 //            for i in event! {
                 //                print(i.eventname)
                 //            }

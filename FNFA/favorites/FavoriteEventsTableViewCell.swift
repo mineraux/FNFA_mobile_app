@@ -42,6 +42,9 @@ class FavoriteEventsTableViewCell: UITableViewCell {
             }
         }
         
+        // Reload la tableView des favoris pour mettre à jour la liste quand on retire un evenement
+        // (besoin de push un notification car tableView dans une autre class)
+        
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "load"), object: nil)
     }
     

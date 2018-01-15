@@ -137,7 +137,7 @@
                                 </prototypes>
                             </tableView>
                             <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gSs-PY-lM5">
-                                <rect key="frame" x="363" y="0.0" width="12" height="667"/>
+                                <rect key="frame" x="345" y="0.0" width="30" height="667"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RGl-eQ-Ilx">
                                         <rect key="frame" x="22" y="149" width="162" height="50"/>

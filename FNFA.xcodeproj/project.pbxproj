@@ -113,23 +113,14 @@
 		004253B51FE44E1B00F28931 /* FNFA */ = {
 			isa = PBXGroup;
 			children = (
+				5DE1DBBC200D0F9E0006B747 /* utilities */,
+				5DE1DBBD200D100B0006B747 /* favorites */,
+				5DE1DBBB200D0F880006B747 /* events */,
 				004253B61FE44E1B00F28931 /* AppDelegate.swift */,
 				004253B81FE44E1B00F28931 /* ViewController.swift */,
-				00E8075C1FFBA9BF00A56AD8 /* CoreDataHandler.swift */,
-				0072DB141FF01DB800C4F680 /* EventsList.swift */,
-				005BDDC5200402B8006DD218 /* loadJSON.swift */,
-				008BEF41200547C100F421FF /* dateFormatter.swift */,
-				005F15B51FF7BAD8008AC7DC /* allEventsController.swift */,
-				0061FD7B1FFA860500B7FBFA /* ArticleTableViewCell.swift */,
-				00E807601FFBB67900A56AD8 /* FavoriteEventsViewController.swift */,
-				00E807621FFBEDC200A56AD8 /* FavoriteEventsTableViewCell.swift */,
-				0072DB121FF01C3900C4F680 /* SingleEventViewController.swift */,
 				004253BA1FE44E1B00F28931 /* Main.storyboard */,
 				004253D61FE44F0A00F28931 /* le_festival.storyboard */,
 				004253D81FE44F5100F28931 /* informations.storyboard */,
-				0012649B1FEE90F7003B1981 /* voir_tout.storyboard */,
-				004253DA1FE44FDC00F28931 /* ma_selection.storyboard */,
-				005F15AD1FF6B7F5008AC7DC /* singleEvent.storyboard */,
 				004253BD1FE44E1B00F28931 /* Assets.xcassets */,
 				004253BF1FE44E1B00F28931 /* LaunchScreen.storyboard */,
 				005BDDC72004053C006DD218 /* categories.json */,
@@ -148,6 +139,39 @@
 				004253CD1FE44E1B00F28931 /* Info.plist */,
 			);
 			path = FNFATests;
+			sourceTree = "<group>";
+		};
+		5DE1DBBB200D0F880006B747 /* events */ = {
+			isa = PBXGroup;
+			children = (
+				005F15B51FF7BAD8008AC7DC /* allEventsController.swift */,
+				0061FD7B1FFA860500B7FBFA /* ArticleTableViewCell.swift */,
+				0072DB121FF01C3900C4F680 /* SingleEventViewController.swift */,
+				0012649B1FEE90F7003B1981 /* voir_tout.storyboard */,
+				005F15AD1FF6B7F5008AC7DC /* singleEvent.storyboard */,
+			);
+			path = events;
+			sourceTree = "<group>";
+		};
+		5DE1DBBC200D0F9E0006B747 /* utilities */ = {
+			isa = PBXGroup;
+			children = (
+				00E8075C1FFBA9BF00A56AD8 /* CoreDataHandler.swift */,
+				0072DB141FF01DB800C4F680 /* EventsList.swift */,
+				005BDDC5200402B8006DD218 /* loadJSON.swift */,
+				008BEF41200547C100F421FF /* dateFormatter.swift */,
+			);
+			path = utilities;
+			sourceTree = "<group>";
+		};
+		5DE1DBBD200D100B0006B747 /* favorites */ = {
+			isa = PBXGroup;
+			children = (
+				00E807601FFBB67900A56AD8 /* FavoriteEventsViewController.swift */,
+				00E807621FFBEDC200A56AD8 /* FavoriteEventsTableViewCell.swift */,
+				004253DA1FE44FDC00F28931 /* ma_selection.storyboard */,
+			);
+			path = favorites;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
